@@ -5,7 +5,7 @@ resource "random_password" "redis_password" {
 }
 
 # Redis Cluster
-resource "aws_elasticache_replication_group" "tfe" {
+resource "aws_elasticache_replication_group" "redis_cluster" {
   node_type                     = "cache.m4.large"
   replication_group_id          = "${var.owner}-tfe-es-redis"
   replication_group_description = "${var.owner}-tfe-es-redis"
@@ -18,8 +18,10 @@ resource "aws_elasticache_replication_group" "tfe" {
   engine_version                = "5.0.6"
   number_cache_clusters         = length(data.terraform_remote_state.vpc.outputs.az)
   parameter_group_name          = "default.redis5.0"
-  # port                          = 7480
-  security_group_ids            = [module.poc_sg.sg_id]
+  security_group_ids            = [module.redis_sg.sg_id]
   subnet_group_name             = data.terraform_remote_state.vpc.outputs.cache_subnet_group[0]
   transit_encryption_enabled    = true
+  tags = {
+    "Name" = "${var.owner}-tfe-es-redis"
+  }
 }

@@ -1,11 +1,11 @@
 # Route53 DNS Record
-data "aws_route53_zone" "selected" {
+data "aws_route53_zone" "dns_zone" {
   name = "hashicorp-success.com."
 }
 
-resource "aws_route53_record" "flamarion" {
-  zone_id = data.aws_route53_zone.selected.id
-  name    = "${var.dns_record_name}.${data.aws_route53_zone.selected.name}"
+resource "aws_route53_record" "alias_record" {
+  zone_id = data.aws_route53_zone.dns_zone.id
+  name    = "${var.dns_record_name}.${data.aws_route53_zone.dns_zone.name}"
   type    = "A"
   alias {
     name                   = aws_lb.lb.dns_name

@@ -31,22 +31,16 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
-data "terraform_remote_state" "lb" {
-  backend = "remote"
-
-  config = {
-    organization = "FlamaCorp"
-    workspaces = {
-      name = "tf-aws-lb"
-    }
-  }
-}
-
-resource "aws_key_pair" "tfe_key" {
+resource "aws_key_pair" "ssh_key" {
   key_name   = "${var.owner}-tfe-es-ha"
   public_key = var.cloud_pub
 }
 
+
+resource "random_password" "admin_password" {
+  length = 16
+  special = false
+}
 
 resource "random_password" "enc_password" {
   length  = 16

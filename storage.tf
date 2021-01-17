@@ -12,4 +12,7 @@ resource "aws_s3_bucket" "tfe_s3" {
   versioning {
     enabled = true
   }
+  tags = {
+    "Name" = "${var.owner}-tfe-es-s3"
+  }
 }

@@ -17,12 +17,6 @@ variable "cloud_pub" {
   default     = "default"
 }
 
-# TFE
-variable "admin_password" {
-  type    = string
-  default = "SuperS3cret"
-}
-
 variable "rel_seq" {
   type    = string
   default = 501
@@ -48,18 +42,6 @@ variable "https_port" {
 
 variable "https_proto" {
   description = "HTTPS Protocol"
-  type        = string
-  default     = "HTTPS"
-}
-
-variable "replicated_port" {
-  description = "Replicated Port"
-  type        = number
-  default     = 8800
-}
-
-variable "replicated_proto" {
-  description = "Replicated HTTP Protocol"
   type        = string
   default     = "HTTPS"
 }

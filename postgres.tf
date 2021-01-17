@@ -5,7 +5,7 @@ resource "random_password" "db_pw" {
 
 # RDS Postgre Cluster module
 
-module "tfe_db_cluster" {
+module "pgsql_cluster" {
   source                 = "github.com/flamarion/terraform-aws-rds?ref=v0.0.4"
   apply_immediately      = true
   availability_zones     = data.terraform_remote_state.vpc.outputs.az
@@ -16,7 +16,7 @@ module "tfe_db_cluster" {
   master_password        = random_password.db_pw.result
   master_username        = "tfe"
   skip_final_snapshot    = true
-  vpc_security_group_ids = [module.poc_sg.sg_id]
+  vpc_security_group_ids = [module.db_sg.sg_id]
   replica_count          = 2
   identifier             = "${var.owner}-tfe-db-instance"
   instance_class         = "db.t3.medium"
