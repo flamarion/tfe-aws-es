@@ -99,8 +99,8 @@ resource "aws_launch_configuration" "tfe_instances" {
 # Auto Scaling Group
 resource "aws_autoscaling_group" "tfe_asg" {
   name                 = "${var.owner}-tfe-es-asg"
-  max_size             = 2
-  min_size             = 2
+  max_size             = 1
+  min_size             = 1
   vpc_zone_identifier  = data.terraform_remote_state.vpc.outputs.public_subnets_id
   launch_configuration = aws_launch_configuration.tfe_instances.name
   target_group_arns = [
