@@ -8,7 +8,6 @@ cat > /etc/replicated.conf <<EOF
   "BypassPreflightChecks": true,
   "ImportSettingsFrom": "/etc/settings.json",
   "LicenseFileLocation": "/etc/license-ha.rli",
-  "LicenseBootstrapChannelID" : "${lic_ch_id}",
   "ReleaseSequence": ${rel_seq}
 }
 EOF

@@ -78,8 +78,8 @@ module "redis_sg" {
       description       = "Allow access from TFE Instances"
       type              = "ingress"
       cidr_blocks       = data.terraform_remote_state.vpc.outputs.public_subnets
-      from_port         = aws_elasticache_replication_group.redis_cluster.port
-      to_port           = aws_elasticache_replication_group.redis_cluster.port
+      from_port         = var.redis_port
+      to_port           = var.redis_port
       protocol          = "tcp"
       security_group_id = module.redis_sg.sg_id
     },

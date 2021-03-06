@@ -18,6 +18,7 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   engine_version                = "5.0.6"
   number_cache_clusters         = length(data.terraform_remote_state.vpc.outputs.az)
   parameter_group_name          = "default.redis5.0"
+  port                          = var.redis_port
   security_group_ids            = [module.redis_sg.sg_id]
   subnet_group_name             = data.terraform_remote_state.vpc.outputs.cache_subnet_group[0]
   transit_encryption_enabled    = true

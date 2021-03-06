@@ -6,8 +6,8 @@ variable "owner" {
 }
 
 variable "bg" {
-  type = string
-  default = "blue"
+  type    = string
+  default = "green"
 }
 
 # Instances
@@ -19,12 +19,8 @@ variable "cloud_pub" {
 
 variable "rel_seq" {
   type    = string
-  default = 501
-}
-
-variable "lic_ch_id" {
-  type    = string
-  default = "f2512d8ea712baead124b22a5b31aeaf"
+  # default = 504
+  default = 0
 }
 
 variable "tfe_ha" {
@@ -53,3 +49,8 @@ variable "dns_record_name" {
   default     = "flamarion-es"
 }
 
+variable "redis_port" {
+  description = "Redis Port"
+  type        = number
+  default     = 6379
+}

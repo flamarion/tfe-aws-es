@@ -53,7 +53,6 @@ data "template_file" "tfe_config" {
   vars = {
     admin_password                  = random_password.admin_password.result
     rel_seq                         = var.rel_seq
-    lic_ch_id                       = var.lic_ch_id
     tfe_ha                          = var.tfe_ha
     enc_password                    = random_password.enc_password.result
     user_token                      = random_id.user_token.hex
